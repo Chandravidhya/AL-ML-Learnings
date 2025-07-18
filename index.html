@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Interactive AI/ML Learning Roadmap</title>
+    <title>Your Interactive AI/ML Learning Roadmap - Landing Page</title>
     <!-- Chosen Palette: Calm Harmony (Slate/Gray neutrals with a Cyan accent) -->
-    <!-- Application Structure Plan: A single-page, vertical-scrolling application structured as a 4-stage learning roadmap. A sticky top navigation allows users to jump between stages. Each stage uses interactive elements like expandable cards, tabs, and diagrams to present detailed information without overwhelming the user. This task-oriented, step-by-step structure is chosen because the source report is a learning guide, making a linear yet flexible progression the most intuitive user experience. -->
+    <!-- Application Structure Plan: This page now serves as the landing page for a multi-page learning hub. It retains the 4-stage vertical-scrolling roadmap. The sticky top navigation is updated to include direct links to sections within this landing page (e.g., "Roadmap: Foundation") and new, conceptual links to separate HTML files for "further pages" (e.g., "Advanced Topics", "Project Gallery", "Community & Resources"). This structure provides a clear entry point and allows for logical expansion into distinct content areas, enhancing user navigation and exploration of a broader knowledge base. -->
     <!-- Visualization & Content Choices: Time Allocation (Stage 1) -> Goal: Compare -> Viz: Horizontal Bar Chart -> Interaction: Hover for details -> Justification: Clear proportional comparison -> Library: Chart.js. Project Lifecycle -> Goal: Show process -> Viz: Donut Chart -> Interaction: Hover for details -> Justification: Visualizes parts of a whole -> Library: Chart.js. Core Algorithms -> Goal: Organize/Relate -> Viz: HTML/CSS Diagram -> Interaction: Click to reveal description -> Justification: Interactive and avoids SVG -> Library: JS. Code Snippets -> Goal: Instruct -> Viz: Styled code block -> Interaction: Copy button -> Justification: Practical for developers -> Library: JS. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -55,14 +55,18 @@
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
-                    <h1 class="text-xl md:text-2xl font-bold text-cyan-700">AI/ML Roadmap</h1>
+                    <h1 class="text-xl md:text-2xl font-bold text-cyan-700">AI/ML Learning Hub</h1>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#stage1" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 1: Foundation</a>
-                        <a href="#stage2" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 2: Core ML</a>
-                        <a href="#stage3" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 3: Projects</a>
-                        <a href="#stage4" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 4: Lifelong Learning</a>
+                        <a href="#intro" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Home</a>
+                        <a href="#stage1" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Roadmap: Foundation</a>
+                        <a href="#stage2" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Roadmap: Core ML</a>
+                        <a href="#stage3" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Roadmap: Projects</a>
+                        <a href="#stage4" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Roadmap: Lifelong Learning</a>
+                        <a href="advanced_topics.html" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Advanced Topics</a>
+                        <a href="project_gallery.html" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Project Gallery</a>
+                        <a href="community_resources.html" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Community & Resources</a>
                     </div>
                 </div>
                 <div class="md:hidden">
@@ -76,10 +80,14 @@
             </div>
             <div id="mobile-menu" class="md:hidden hidden">
                 <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <a href="#stage1" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 1: Foundation</a>
-                    <a href="#stage2" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 2: Core ML</a>
-                    <a href="#stage3" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 3: Projects</a>
-                    <a href="#stage4" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 4: Lifelong Learning</a>
+                    <a href="#intro" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Home</a>
+                    <a href="#stage1" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Roadmap: Foundation</a>
+                    <a href="#stage2" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Roadmap: Core ML</a>
+                    <a href="#stage3" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Roadmap: Projects</a>
+                    <a href="#stage4" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Roadmap: Lifelong Learning</a>
+                    <a href="advanced_topics.html" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Advanced Topics</a>
+                    <a href="project_gallery.html" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Project Gallery</a>
+                    <a href="community_resources.html" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Community & Resources</a>
                 </div>
             </div>
         </nav>
@@ -89,9 +97,9 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         
         <!-- Intro Section -->
-        <section class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">Your Journey to AI & ML Mastery Starts Now</h2>
-            <p class="max-w-3xl mx-auto text-lg text-slate-600">This interactive guide provides a clear, step-by-step path to becoming a proficient AI/ML practitioner. We'll cover everything from the essential mathematical foundations to building and deploying your own models using free, top-rated online resources. Click through the stages to begin.</p>
+        <section id="intro" class="text-center mb-16 pt-20 -mt-20">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">Welcome to Your AI & ML Learning Hub</h2>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600">This page serves as your starting point for mastering Artificial Intelligence and Machine Learning. Explore the step-by-step roadmap below, or navigate to dedicated pages for advanced topics, project showcases, and community resources using the navigation bar above. Your journey to becoming an AI/ML professional begins here!</p>
         </section>
 
         <!-- Stage 1 -->
@@ -213,6 +221,7 @@
                             <ul class="list-disc list-inside text-slate-600 space-y-2">
                                 <li><a href="https://www.coursera.org/learn/machine-learning" target="_blank" class="text-cyan-600 hover:underline">Machine Learning by Andrew Ng (Coursera)</a>: The classic intro course. Audit for free.</li>
                                 <li><a href="https://developers.google.com/machine-learning/crash-course" target="_blank" class="text-cyan-600 hover:underline">Google's ML Crash Course</a>: Practical with TensorFlow.</li>
+                                <li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank" class="text-cyan-600 hover:underline">DeepLearning.AI Specialization</a>: The best intro to deep learning. Audit for free.</li>
                                 <li><a href="https://course.fast.ai/" target="_blank" class="text-cyan-600 hover:underline">Fast.ai</a>: A practical, code-first approach.</li>
                             </ul>
                         </div>
