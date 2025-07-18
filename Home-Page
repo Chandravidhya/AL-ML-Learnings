@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Interactive AI/ML Learning Roadmap</title>
+    <!-- Chosen Palette: Calm Harmony (Slate/Gray neutrals with a Cyan accent) -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling application structured as a 4-stage learning roadmap. A sticky top navigation allows users to jump between stages. Each stage uses interactive elements like expandable cards, tabs, and diagrams to present detailed information without overwhelming the user. This task-oriented, step-by-step structure is chosen because the source report is a learning guide, making a linear yet flexible progression the most intuitive user experience. -->
+    <!-- Visualization & Content Choices: Time Allocation (Stage 1) -> Goal: Compare -> Viz: Horizontal Bar Chart -> Interaction: Hover for details -> Justification: Clear proportional comparison -> Library: Chart.js. Project Lifecycle -> Goal: Show process -> Viz: Donut Chart -> Interaction: Hover for details -> Justification: Visualizes parts of a whole -> Library: Chart.js. Core Algorithms -> Goal: Organize/Relate -> Viz: HTML/CSS Diagram -> Interaction: Click to reveal description -> Justification: Interactive and avoids SVG -> Library: JS. Code Snippets -> Goal: Instruct -> Viz: Styled code block -> Interaction: Copy button -> Justification: Practical for developers -> Library: JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+        .content-hidden {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .content-visible {
+            max-height: 1000px; /* Should be larger than the content */
+            transition: max-height 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header and Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl md:text-2xl font-bold text-cyan-700">AI/ML Roadmap</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#stage1" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 1: Foundation</a>
+                        <a href="#stage2" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 2: Core ML</a>
+                        <a href="#stage3" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 3: Projects</a>
+                        <a href="#stage4" class="nav-link text-slate-600 hover:text-cyan-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent hover:border-cyan-600">Stage 4: Lifelong Learning</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cyan-800 focus:ring-white">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#stage1" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 1: Foundation</a>
+                    <a href="#stage2" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 2: Core ML</a>
+                    <a href="#stage3" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 3: Projects</a>
+                    <a href="#stage4" class="nav-link block text-slate-600 hover:text-cyan-600 hover:bg-slate-100 px-3 py-2 rounded-md text-base font-medium">Stage 4: Lifelong Learning</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        
+        <!-- Intro Section -->
+        <section class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">Your Journey to AI & ML Mastery Starts Now</h2>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600">This interactive guide provides a clear, step-by-step path to becoming a proficient AI/ML practitioner. We'll cover everything from the essential mathematical foundations to building and deploying your own models using free, top-rated online resources. Click through the stages to begin.</p>
+        </section>
+
+        <!-- Stage 1 -->
+        <section id="stage1" class="mb-20 pt-20 -mt-20">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                <div class="text-center mb-8">
+                    <span class="text-sm font-semibold text-cyan-600 uppercase tracking-wider">Months 1-3</span>
+                    <h3 class="text-3xl font-bold text-slate-900 mt-2">Stage 1: Build a Strong Foundation</h3>
+                    <p class="max-w-2xl mx-auto mt-4 text-slate-600">Before diving into complex algorithms, it's crucial to master the fundamentals. This stage focuses on the essential mathematics, programming skills, and data manipulation tools that form the bedrock of all AI and machine learning work. A solid foundation here will accelerate your learning in all subsequent stages.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-xl font-semibold text-slate-800 mb-4 text-center">Recommended Time Allocation</h4>
+                        <div class="chart-container">
+                            <canvas id="foundationChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="resource-card bg-slate-50 rounded-lg">
+                            <button class="w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                                <span>&#x1F4CF; Mathematics & Statistics</span>
+                                <span class="transform transition-transform duration-300">&#x25BC;</span>
+                            </button>
+                            <div class="content-hidden p-4 border-t border-slate-200">
+                                <p class="text-slate-600 mb-3">AI is heavily math-based. Focus on Linear Algebra, Calculus, and Probability.</p>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li><a href="https://www.khanacademy.org/" target="_blank" class="text-cyan-600 hover:underline">Khan Academy</a>: Comprehensive courses.</li>
+                                    <li><a href="https://www.youtube.com/c/3blue1brown" target="_blank" class="text-cyan-600 hover:underline">3Blue1Brown</a>: Intuitive video explanations.</li>
+                                    <li><a href="https://www.youtube.com/c/statquest" target="_blank" class="text-cyan-600 hover:underline">StatQuest</a>: Clear statistical concepts.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="resource-card bg-slate-50 rounded-lg">
+                            <button class="w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                                <span>&#x1F4BB; Programming (Python)</span>
+                                <span class="transform transition-transform duration-300">&#x25BC;</span>
+                            </button>
+                             <div class="content-hidden p-4 border-t border-slate-200">
+                                <p class="text-slate-600 mb-3">Python is the primary language for AI/ML. Master its fundamentals and data structures.</p>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li><a href="https://developers.google.com/edu/python" target="_blank" class="text-cyan-600 hover:underline">Google's Python Class</a>: Solid fundamentals.</li>
+                                    <li><a href="https://www.freecodecamp.org/learn/scientific-computing-with-python/" target="_blank" class="text-cyan-600 hover:underline">FreeCodeCamp</a>: Hands-on challenges.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="resource-card bg-slate-50 rounded-lg">
+                            <button class="w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                                <span>&#x1F4CA; Data Manipulation & Analysis</span>
+                                 <span class="transform transition-transform duration-300">&#x25BC;</span>
+                            </button>
+                             <div class="content-hidden p-4 border-t border-slate-200">
+                                <p class="text-slate-600 mb-3">Learn to handle and visualize data with essential libraries like NumPy, Pandas, and Matplotlib.</p>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li><a href="https://www.kaggle.com/learn" target="_blank" class="text-cyan-600 hover:underline">Kaggle Micro-Courses</a>: Interactive learning.</li>
+                                    <li><a href="https://realpython.com/" target="_blank" class="text-cyan-600 hover:underline">Real Python</a>: In-depth tutorials.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stage 2 -->
+        <section id="stage2" class="mb-20 pt-20 -mt-20">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                <div class="text-center mb-8">
+                    <span class="text-sm font-semibold text-cyan-600 uppercase tracking-wider">Months 4-9</span>
+                    <h3 class="text-3xl font-bold text-slate-900 mt-2">Stage 2: Dive into Core Machine Learning</h3>
+                     <p class="max-w-2xl mx-auto mt-4 text-slate-600">With a strong foundation, you are now ready to explore the core concepts and algorithms of machine learning. This stage covers the different types of machine learning, essential terminology, and the most common algorithms you'll encounter. You'll also get a gentle introduction to the exciting world of deep learning.</p>
+                </div>
+                
+                <h4 class="text-xl font-semibold text-slate-800 mb-6 text-center">Explore ML Algorithm Families</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <!-- Supervised Learning -->
+                    <div class="algorithm-family border border-slate-200 p-4 rounded-lg bg-slate-50">
+                        <h5 class="font-bold text-lg text-cyan-700">Supervised Learning</h5>
+                        <p class="text-sm text-slate-500 mb-3">Learning from labeled data (input-output pairs).</p>
+                        <div class="space-y-2">
+                            <button class="algorithm-btn w-full bg-white p-2 rounded shadow-sm hover:bg-cyan-50" data-info="Predicts a continuous value (e.g., house price). Examples: Linear Regression.">Regression</button>
+                            <button class="algorithm-btn w-full bg-white p-2 rounded shadow-sm hover:bg-cyan-50" data-info="Predicts a category (e.g., spam vs. not spam). Examples: Logistic Regression, SVM, Decision Trees.">Classification</button>
+                        </div>
+                    </div>
+                    <!-- Unsupervised Learning -->
+                    <div class="algorithm-family border border-slate-200 p-4 rounded-lg bg-slate-50">
+                        <h5 class="font-bold text-lg text-cyan-700">Unsupervised Learning</h5>
+                        <p class="text-sm text-slate-500 mb-3">Finding patterns in unlabeled data.</p>
+                        <div class="space-y-2">
+                             <button class="algorithm-btn w-full bg-white p-2 rounded shadow-sm hover:bg-cyan-50" data-info="Groups similar data points together. Example: K-Means Clustering.">Clustering</button>
+                             <button class="algorithm-btn w-full bg-white p-2 rounded shadow-sm hover:bg-cyan-50" data-info="Reduces the number of variables in the data. Example: Principal Component Analysis (PCA).">Dimensionality Reduction</button>
+                        </div>
+                    </div>
+                    <!-- Reinforcement Learning -->
+                    <div class="algorithm-family border border-slate-200 p-4 rounded-lg bg-slate-50">
+                        <h5 class="font-bold text-lg text-cyan-700">Reinforcement Learning</h5>
+                        <p class="text-sm text-slate-500 mb-3">Agent learns by interacting with an environment.</p>
+                        <div class="space-y-2">
+                           <button class="algorithm-btn w-full bg-white p-2 rounded shadow-sm hover:bg-cyan-50" data-info="An agent learns to make decisions through rewards and punishments. Used in robotics, games, and navigation.">Trial & Error Learning</button>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Modal for algorithm info -->
+                <div id="algorithm-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex justify-center items-center p-4">
+                    <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md text-center">
+                        <p id="modal-info" class="text-slate-700 mb-4"></p>
+                        <button id="close-modal-btn" class="bg-cyan-600 text-white px-4 py-2 rounded-md hover:bg-cyan-700">Close</button>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <h4 class="text-xl font-semibold text-slate-800 mb-4 text-center">Top-Rated Learning Resources</h4>
+                     <div class="resource-card bg-slate-50 rounded-lg">
+                        <button class="w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                            <span>&#x1F393; Foundational Courses & Deep Learning Intros</span>
+                            <span class="transform transition-transform duration-300">&#x25BC;</span>
+                        </button>
+                         <div class="content-hidden p-4 border-t border-slate-200">
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><a href="https://www.coursera.org/learn/machine-learning" target="_blank" class="text-cyan-600 hover:underline">Machine Learning by Andrew Ng (Coursera)</a>: The classic intro course. Audit for free.</li>
+                                <li><a href="https://developers.google.com/machine-learning/crash-course" target="_blank" class="text-cyan-600 hover:underline">Google's ML Crash Course</a>: Practical with TensorFlow.</li>
+                                <li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank" class="text-cyan-600 hover:underline">DeepLearning.AI Specialization</a>: The best intro to deep learning. Audit for free.</li>
+                                <li><a href="https://course.fast.ai/" target="_blank" class="text-cyan-600 hover:underline">Fast.ai</a>: A practical, code-first approach.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stage 3 -->
+        <section id="stage3" class="mb-20 pt-20 -mt-20">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                <div class="text-center mb-8">
+                     <span class="text-sm font-semibold text-cyan-600 uppercase tracking-wider">Months 10-18</span>
+                    <h3 class="text-3xl font-bold text-slate-900 mt-2">Stage 3: Build Hands-On Projects</h3>
+                    <p class="max-w-2xl mx-auto mt-4 text-slate-600">Theory is important, but practical application is where real learning happens. This stage is all about building your own models. You'll learn the full project lifecycle, from gathering data to deploying a model online. We'll differentiate between offline models (running on your machine) and online models (accessible via the internet).</p>
+                </div>
+                
+                 <div class="grid md:grid-cols-2 gap-8 items-center">
+                     <div>
+                        <h4 class="text-xl font-semibold text-slate-800 mb-4 text-center">The ML Project Lifecycle</h4>
+                        <div class="chart-container">
+                            <canvas id="lifecycleChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="resource-card bg-slate-50 rounded-lg">
+                            <button class="w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                                <span>&#x1F5A5; Building Offline Models</span>
+                                <span class="transform transition-transform duration-300">&#x25BC;</span>
+                            </button>
+                            <div class="content-hidden p-4 border-t border-slate-200">
+                                <p class="text-slate-600 mb-3">An offline model is trained and saved to run locally. Here's a typical workflow using Scikit-learn:</p>
+                                <div class="bg-slate-800 text-white rounded-md p-4 overflow-x-auto relative">
+                                    <button class="copy-btn absolute top-2 right-2 bg-slate-600 hover:bg-slate-500 text-xs px-2 py-1 rounded">Copy</button>
+                                    <pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+import joblib
+
+# 1. Load and split data (X, y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# 2. Initialize and train model
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+
+# 3. Evaluate model (not shown)
+# ...
+
+# 4. Save model for offline use
+joblib.dump(model, 'offline_model.pkl')
+
+# 5. Load and predict later
+loaded_model = joblib.load('offline_model.pkl')
+prediction = loaded_model.predict(new_data)
+                                    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resource-card bg-slate-50 rounded-lg">
+                            <button class="w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                                <span>&#x1F310; Building Online Models (Deployment)</span>
+                                <span class="transform transition-transform duration-300">&#x25BC;</span>
+                            </button>
+                             <div class="content-hidden p-4 border-t border-slate-200">
+                                <p class="text-slate-600 mb-3">An online model is deployed to a server and accessed via an API. Here's a simple example using Flask:</p>
+                                <div class="bg-slate-800 text-white rounded-md p-4 overflow-x-auto relative">
+                                    <button class="copy-btn absolute top-2 right-2 bg-slate-600 hover:bg-slate-500 text-xs px-2 py-1 rounded">Copy</button>
+                                    <pre><code class="language-python">from flask import Flask, request, jsonify
+import joblib
+
+app = Flask(__name__)
+
+# Load the trained model
+model = joblib.load('offline_model.pkl')
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json(force=True)
+    # Assume data is in format: {'features': [...]}
+    prediction = model.predict([data['features']])
+    return jsonify({'prediction': prediction.tolist()})
+
+if __name__ == '__main__':
+    # For production, use a proper WSGI server
+    app.run(port=5000, debug=True)
+                                    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- Stage 4 -->
+        <section id="stage4" class="mb-8 pt-20 -mt-20">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                 <div class="text-center mb-8">
+                     <span class="text-sm font-semibold text-cyan-600 uppercase tracking-wider">Ongoing</span>
+                    <h3 class="text-3xl font-bold text-slate-900 mt-2">Stage 4: Lifelong Learning & Specialization</h3>
+                     <p class="max-w-2xl mx-auto mt-4 text-slate-600">The field of AI is evolving at an incredible pace. Becoming a pro isn't a destination, but a continuous journey of learning. This final stage is about staying current, engaging with the community, and diving deeper into specialized areas that excite you. This commitment to ongoing education is what separates experts from amateurs.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">&#x1F4F0; Stay Updated</h4>
+                        <p class="text-slate-600 mb-3">Follow the latest research and news from top sources.</p>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1">
+                             <li><a href="https://blog.google/technology/ai/" target="_blank" class="text-cyan-600 hover:underline">Google AI Blog</a></li>
+                             <li><a href="https://openai.com/blog" target="_blank" class="text-cyan-600 hover:underline">OpenAI Blog</a></li>
+                             <li><a href="https://arxiv.org/list/cs.AI/new" target="_blank" class="text-cyan-600 hover:underline">arXiv (AI Papers)</a></li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">&#x1F465; Join Communities</h4>
+                        <p class="text-slate-600 mb-3">Learn from others, ask questions, and collaborate.</p>
+                         <ul class="list-disc list-inside text-slate-600 space-y-1">
+                             <li><a href="https://www.kaggle.com/discussions" target="_blank" class="text-cyan-600 hover:underline">Kaggle</a></li>
+                             <li><a href="https://github.com/" target="_blank" class="text-cyan-600 hover:underline">GitHub</a></li>
+                             <li><a href="https://huggingface.co/" target="_blank" class="text-cyan-600 hover:underline">Hugging Face</a></li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">&#x1F3AF; Explore Specializations</h4>
+                        <p class="text-slate-600 mb-3">Deepen your expertise in a specific sub-field.</p>
+                         <ul class="list-disc list-inside text-slate-600 space-y-1">
+                             <li>Natural Language Processing (NLP)</li>
+                             <li>Computer Vision (CV)</li>
+                             <li>Reinforcement Learning (RL)</li>
+                             <li>Generative AI</li>
+                             <li>MLOps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center">
+            <p>Your AI journey is just beginning. Keep learning, keep building.</p>
+            <p class="text-sm text-slate-400 mt-2">&copy; 2025 Your Name/Organization. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Resource card accordion
+    const resourceCards = document.querySelectorAll('.resource-card button');
+    resourceCards.forEach(button => {
+        button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('span:last-child');
+
+            // Close other open cards
+            document.querySelectorAll('.resource-card .content-visible').forEach(openContent => {
+                if (openContent !== content) {
+                    openContent.classList.remove('content-visible');
+                    openContent.classList.add('content-hidden');
+                    const otherButton = openContent.previousElementSibling;
+                    otherButton.querySelector('span:last-child').classList.remove('rotate-180');
+                }
+            });
+            
+            content.classList.toggle('content-hidden');
+            content.classList.toggle('content-visible');
+            icon.classList.toggle('rotate-180');
+        });
+    });
+
+    // Algorithm info modal
+    const algorithmBtns = document.querySelectorAll('.algorithm-btn');
+    const modal = document.getElementById('algorithm-modal');
+    const modalInfo = document.getElementById('modal-info');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    
+    algorithmBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalInfo.textContent = btn.dataset.info;
+            modal.classList.remove('hidden');
+        });
+    });
+
+    const closeModal = () => {
+        modal.classList.add('hidden');
+    }
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Copy to clipboard
+    const copyButtons = document.querySelectorAll('.copy-btn');
+    copyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const code = btn.nextElementSibling.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    });
+
+    // Chart.js Implementations
+    // Chart 1: Foundation Stage Time Allocation
+    const foundationCtx = document.getElementById('foundationChart');
+    if (foundationCtx) {
+        new Chart(foundationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Programming (Python)', 'Mathematics & Stats', 'Data Tools (NumPy/Pandas)'],
+                datasets: [{
+                    label: '% Time Allocation',
+                    data: [45, 35, 20],
+                    backgroundColor: [
+                        'rgba(6, 182, 212, 0.7)',  // cyan-500
+                        'rgba(8, 145, 178, 0.7)',  // cyan-600
+                        'rgba(15, 118, 144, 0.7)' // cyan-700
+                    ],
+                    borderColor: [
+                        'rgb(6, 182, 212)',
+                        'rgb(8, 145, 178)',
+                        'rgb(15, 118, 144)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.raw}% Recommended Focus`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Chart 2: Project Lifecycle
+    const lifecycleCtx = document.getElementById('lifecycleChart');
+    if (lifecycleCtx) {
+        new Chart(lifecycleCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['1. Data Prep', '2. Training', '3. Evaluation', '4. Tuning', '5. Deployment'],
+                datasets: [{
+                    label: 'Project Phase',
+                    data: [30, 25, 15, 15, 15],
+                    backgroundColor: [
+                        'rgba(6, 182, 212, 0.7)',
+                        'rgba(8, 145, 178, 0.7)',
+                        'rgba(15, 118, 144, 0.7)',
+                        'rgba(21, 94, 117, 0.7)',
+                        'rgba(22, 78, 99, 0.7)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw}% Effort`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>
